@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keya Shettigar Designer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Loading Section -->
+    <div class="container loading" id="loading-text">
+        <h1>
+            <span id="k-letter">K</span>eya Shettigar
+        </h1>
+        <h2>Designer.</h2>
+    </div>
+
+    <!-- Homepage Content -->
+    <div class="container homepage">
+        <nav>
+            <a href="#" id="logo-link">K</a>
+        </nav>
+        <div class="homepage-c">
+            
+            <div class="left">
+                <ul>
+                    <li><a href="#" id="home-link">Home</a></li>
+                    <li><a href="#" data-target="intro-content">Intro</a></li>
+                    <li><a href="#" data-target="projects-content">Projects</a></li>
+                    <li><a href="#" data-target="contact-content">Contact</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="content" id="intro-content">
+                    <div class="questions">
+                        <h3><a href="#" data-target="answer1" class="active">Who am I?</a></h3>
+                        <h3><a href="#" data-target="answer2">About Me</a></h3>
+                        <h3><a href="#" data-target="answer3">Software's</a></h3>
+                    </div>
+                    <div class="answers">
+                        <p class="answer active" id="answer1">
+                            Hello there, I'm a<br> designer who designs<br> bridges connecting<br> people, ideas, and<br> possibilities.
+                        </p>
+                        <p class="answer" id="answer2">
+                            Hi, I'm Keya Shettigar, a<br> passionate designer who<br> loves creating and <br>learning. I enjoy<br> exploring new<br> possibilities while doing<br> what I truly love.
+                        </p>
+                        <p class="answer" id="answer3">
+                            Adobe Illustrator<br> Adobe Photoshop<br> Premiere Pro<br> Figma<br> InDesign
+                        </p>
+                    </div>
+                </div>
+               
+                <div class="content" id="projects-content">
+                    <div class="project-slider-container">
+                        <button class="slider-btn prev" id="prev-btn">&#10094;</button>
+                        <div class="project-slider">
+                            <div class="project-slide" onclick="openModal('photography')">
+                                <img src="/assets/img/project1.jpg" alt="Project 1">
+                                <div>
+                                    <span>Photography</span>
+                                </div>
+                            </div>
+                            <div class="project-slide" onclick="openModal('posters')">
+                                <img src="/assets/img/project2.png" alt="Project 2">
+                                <div>
+                                    <span>Posters</span>
+                                </div>
+                            </div>
+                            <div class="project-slide" onclick="openModal('packaging')">
+                                <img src="/assets/img/project3.png" alt="Project 3">
+                                <div>
+                                    <span>Packaging</span>
+                                </div>
+                            </div>
+                            <div class="project-slide" onclick="openModal('bookdesign')">
+                                <img src="assets/img/bookdesign/Book inside page 1.png" alt="Project 4">
+                                <div>
+                                    <span>Book Design</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="photography-modal" class="modal">
+                            <span class="close" onclick="closeModal('photography')">&times;</span>
+                            <div id="photography-collage" class="collage-container"></div>
+                        </div>
+                        
+                        <div id="posters-modal" class="modal">
+                            <span class="close" onclick="closeModal('posters')">&times;</span>
+                            <div id="posters-collage" class="collage-container"></div>
+                        </div>
+
+                        <div id="packaging-modal" class="modal">
+                            <span class="close" onclick="closeModal('packaging')">&times;</span>
+                            <div id="packaging-collage" class="collage-container"></div>
+                        </div>
+
+                        <div id="bookdesign-modal" class="modal">
+                            <span class="close" onclick="closeModal('bookdesign')">&times;</span>
+                            <div id="bookdesign-collage" class="collage-container"></div>
+                        </div>
+                        <button class="slider-btn next" id="next-btn">&#10095;</button>
+                    </div>
+                </div>
+
+                <div class="content" id="contact-content">
+                    <div class="questions">
+                        <h3><a href="#" data-target="contact-instagram" class="active">Instagram</a></h3>
+                        <h3><a href="#" data-target="contact-linkedin">LinkedIn</a></h3>
+                        <h3><a href="#" data-target="contact-email">Email</a></h3>
+                    </div>
+                    <div class="answers">
+                        <p class="answer active2" id="contact-instagram">@graphiosbykeya</p>
+                        <p class="answer" id="contact-linkedin">Keya Shettigar</p>
+                        <p class="answer" id="contact-email">keya.shettigar@gmail.com</p> 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Get the loading section and the "K" letter
+        const loadingText = document.getElementById("loading-text");
+        const kLetter = document.getElementById("k-letter");
+        const loadingContainer = document.querySelector(".loading");
+
+        // Flag to check if the loading screen is visible
+        let isLoadingVisible = true;
+
+        // Function to show the loading screen and reset animation
+        function showLoading() {
+            loadingText.style.display = "flex"; // Show the loading screen
+            kLetter.classList.remove("move-up"); // Reset the "K" movement
+            loadingText.classList.remove("fade"); // Reset fade
+            loadingContainer.classList.remove("neg-zindex")
+            loadingContainer.classList.add("pos-zindex")
+            isLoadingVisible = true;
+        }
+
+        // Function to hide the loading screen and animate the "K"
+        function hideLoading() {
+            kLetter.classList.add("move-up"); // Move the "K" upwards
+            loadingText.classList.add("fade"); // Fade out the text
+            loadingContainer.classList.remove("pos-zindex")
+            loadingContainer.classList.add("neg-zindex")
+            isLoadingVisible = false;
+        }
+
+        // Event listener for clicking the "K" logo or "Home" to toggle loading screen
+        const logoLink = document.getElementById("logo-link");
+        const homeLink = document.getElementById("home-link");
+
+        loadingText.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isLoadingVisible) {
+                hideLoading(); // Hide the loading screen and animate
+            } else {
+                showLoading(); // Show the loading screen and reset animation
+            }
+        });
+
+        logoLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isLoadingVisible) {
+                hideLoading(); // Hide the loading screen and animate
+            } else {
+                showLoading(); // Show the loading screen and reset animation
+            }
+        });
+
+        homeLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isLoadingVisible) {
+                hideLoading(); // Hide the loading screen and animate
+            } else {
+                showLoading(); // Show the loading screen and reset animation
+            }
+        });
+    </script>
+
+<script>
+    // Get all the links and content divs
+    const links = document.querySelectorAll('.left ul li a');
+const contentDivs = document.querySelectorAll('.content');
+
+// Function to show content based on the clicked link
+function showContent(targetContent) {
+    // Remove active class from all content divs
+    contentDivs.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    // Add active class to the target content div
+    const activeContent = document.getElementById(targetContent);
+    if (activeContent) {
+        activeContent.classList.add('active');
+    }
+
+    // Remove active class from all links
+    links.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Add active class to the corresponding link
+    const activeLink = document.querySelector(`[data-target="${targetContent}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+// Add event listeners for links
+links.forEach(link => {
+    link.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Get the target content ID from the clicked link's data-target attribute
+        const targetContent = this.getAttribute('data-target');
+
+        // Show the corresponding content
+        if (targetContent) {
+            showContent(targetContent);
+        }
+    });
+});
+
+// Example: Keep "Intro" tab active programmatically
+document.addEventListener('DOMContentLoaded', function () {
+    // Replace 'intro-content' with the ID of the tab you want active by default
+    showContent('intro-content');
+});
+
+
+// intro content
+// Select all question links and answer paragraphs
+const questionLinks = document.querySelectorAll('.questions a');
+const answers = document.querySelectorAll('.answers .answer');
+
+// Add click event listeners to each question link
+questionLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        // Get the target answer ID from the data-target attribute
+        const targetId = link.getAttribute('data-target');
+
+        // Remove active class from all links and answers
+        questionLinks.forEach(link => link.classList.remove('active'));
+        answers.forEach(answer => answer.classList.remove('active'));
+
+        // Add active class to the clicked link and corresponding answer
+        link.classList.add('active');
+        const targetAnswer = document.getElementById(targetId);
+        if (targetAnswer) {
+            targetAnswer.classList.add('active');
+        }
+    });
+});
+
+
+</script>
+
+<script>
+    //projects
+    const projectSlider = document.querySelector('.project-slider');
+const slides = document.querySelectorAll('.project-slide');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+let currentSlide = 0;
+
+const updateSliderPosition = () => {
+    const slideWidth = slides[0].offsetWidth + 20; // Slide width + gap
+    projectSlider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+};
+
+prevBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide === 0) ? slides.length - 1 : currentSlide - 1;
+    updateSliderPosition();
+});
+
+nextBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide === slides.length - 1) ? 0 : currentSlide + 1;
+    updateSliderPosition();
+});
+</script>
+<script>
+ function openModal(category) {
+    // Determine which modal to display
+    let modalId = `${category}-modal`;
+    let collageId = `${category}-collage`;
+
+    // Set the image paths based on the category
+    let collageImages;
+    switch (category) {
+        case 'photography':
+            collageImages = [
+                '/assets/img/photography/photography1.jpg',
+                '/assets/img/photography/photography2.jpg',
+                '/assets/img/photography/photography3.jpg',
+                '/assets/img/photography/photography4.jpg',
+                '/assets/img/photography/photography5.jpg',
+                'assets/img/photography/photography6.jpg'
+            ];
+            break;
+        case 'posters':
+            collageImages = [
+                '/assets/img/posters/posters0.jpeg',
+                '/assets/img/posters/posters1.png',
+                '/assets/img/posters/posters2.png',
+                '/assets/img/posters/posters3.png',
+                '/assets/img/posters/posters4.jpg',
+                '/assets/img/posters/poster5.png'
+            ];
+            break;
+        case 'packaging':
+            collageImages = [
+                '/assets/img/packaging/packaging1.png',
+                '/assets/img/packaging/packaging2.png',
+                '/assets/img/packaging/packaging 3.png',
+                '/assets/img/packaging/packaging 4.png',
+                '/assets/img/packaging/packaging5.png'
+                
+            ];
+            break;
+        case 'bookdesign':
+            collageImages = [
+                '/assets/img/bookdesign/Book Cover page 2.png',
+                '/assets/img/bookdesign/bookdesign1.png',
+                '/assets/img/bookdesign/bookdesign5.png',
+                '/assets/img/bookdesign/bookdesign2.png',
+                '/assets/img/bookdesign/bookdesign4.png',
+                '/assets/img/bookdesign/Book inside page 1.png'
+            ];
+            break;
+        // Add more cases for other categories
+    }
+
+    // Get the collage container
+    let collageContainer = document.getElementById(collageId);
+    collageContainer.innerHTML = ''; // Clear any previous content
+
+    // Append images to the collage container
+    collageImages.forEach(imageSrc => {
+        let imgElement = document.createElement('img');
+        imgElement.src = imageSrc;
+        imgElement.alt = `${category} collage image`;
+        collageContainer.appendChild(imgElement);
+    });
+
+    // Show the modal
+    document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(category) {
+    // Hide the modal
+    let modalId = `${category}-modal`;
+    document.getElementById(modalId).style.display = "none";
+}
+<script src="javascr.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="styles.css"></script>
+
+</script>
+</body>
+</html>
